@@ -209,7 +209,7 @@
 		// Other serializers should go here
 	};
 
-	R.fn.toSVG = function() {
+	R.fn.export = function() {
 		var
 			paper   = this,
 			restore = { svg: R.svg, vml: R.vml },
