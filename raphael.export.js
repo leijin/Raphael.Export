@@ -220,6 +220,7 @@
 		R.vml = false;
 
 		for ( var node = paper.bottom; node != null; node = node.next ) {
+
 			if ( node.node.style.display === 'none' ) continue;
 
 			var attrs = '';
@@ -237,7 +238,14 @@
 					break;
 			}
 
+			var data = {"id":"", "node_number":"", "facility_location_number":"", "class":""};
+
+			for (key in data) {
+				attrs += ' ' + key + '="' + escapeXML(node.data(key).toString()) + '"';
+			}
+
 			for ( i in node.attrs ) {
+
 				var name = i;
 
 				switch ( i ) {
@@ -256,7 +264,9 @@
 				}
 			}
 
-			svg += '<' + node.type + ' transform="matrix(' + node.matrix.toString().replace(/^matrix\(|\)$/g, '') + ')"' + attrs + '></' + node.type + '>';
+
+
+			svg += '<' + node.type + attrs + '></' + node.type + '>';
 		}
 
 		svg += '</svg>';
